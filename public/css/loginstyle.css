@@ -1,0 +1,23 @@
+.card {
+    margin-top: 15%;
+}
+.card-header {
+    text-align: center;
+}
+.judul {
+    margin-left: 200px;
+    margin-top: 10px;
+}
+.btn-group {
+    margin-left: 20px;
+    margin-top: 10px;
+}
+.form-label {
+    margin-top: 10px;
+    margin-top: 20px;
+    margin-left: 200px;
+}
+.dropdown {
+    margin-top: 10px;
+    margin-left: 20px;
+}
