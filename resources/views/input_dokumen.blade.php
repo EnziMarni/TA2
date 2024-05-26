@@ -8,7 +8,7 @@
         <a class="nav-link active" id="v-pills-profile-tab" href="{{ route('input-dokumen') }}" role="tab" aria-controls="v-pills-profile" aria-selected="false">Input Dokumen</a>
     
         <a class="nav-link" id="v-pills-messages-tab" href="{{ route('list-dokumen') }}" role="tab" aria-controls="v-pills-messages" aria-selected="false">List Dokumen</a>
-        <!-- <a class="nav-link" id="v-pills-settings-tab" href="{{ route('draft-dokumen') }}" role="tab" aria-controls="v-pills-settings" aria-selected="false">Draft Dokumen</a> -->
+        <a class="nav-link" id="v-pills-messages-tab" href="{{ route('draft-dokumen') }}" role="tab" aria-controls="v-pills-messages" aria-selected="false">Draft Dokumen</a>
     </div>
     <div class="tab-content" id="v-pills-tabContent">
         <div class="tab-pane fade show active" role="tabpanel" aria-labelledby="v-pills-profile-tab">

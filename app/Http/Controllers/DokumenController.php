@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Dokumen;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 
 
@@ -23,7 +24,6 @@ class DokumenController extends Controller
             'tahun_dokumen' => 'required|int',
             'dokumen_file' => 'required|file|mimes:pdf,docx,jpeg,png,jpg|max:2048', // Adjust file types and size limits as needed
             'tags' => 'nullable|string',
-           
         ]);
 
         // Handle file upload (assuming 'dokumen_file' is the file input name)
@@ -37,6 +37,7 @@ class DokumenController extends Controller
             'tahun_dokumen' => $validatedData['tahun_dokumen'],
             'dokumen_file' => $fileName,
             'tags' => $validatedData['tags'],
+            'status' =>'active',
            
         ]);
 
@@ -45,7 +46,7 @@ class DokumenController extends Controller
 
     public function listDokumen()
     {
-        $documents = Dokumen::all();
+        $documents = Dokumen::where('status', '!=', 'draft')->get();
         return view('list-dokumen', ['documents' => $documents]);
     }
 
@@ -71,7 +72,7 @@ class DokumenController extends Controller
             'tahun_dokumen' => 'required|int',
             'dokumen_file' => 'nullable|file|mimes:pdf,docx,jpeg,png,jpg|max:2048',
             'tags' => 'nullable|string',
-          
+      
             
         ]);
         if ($request->hasFile('edit_dokumen_file')) {
@@ -91,10 +92,32 @@ class DokumenController extends Controller
 
     public function destroy($id)
     {
-            $document = Dokumen::findOrFail($id);
-            $document->delete();
-
-            return redirect()->route('list-dokumen')->with('success', 'Dokumen berhasil dihapus');
+        $document = Dokumen::findOrFail($id);
+    
+        // Log informasi dokumen sebelum pemindahan
+        Log::info('Menghapus dokumen dengan ID: '.$id, ['document' => $document]);
+    
+        // Pindahkan data ke tabel drafts sebelum menghapus dari dokumen
+        $draft = Draft::create([
+            'judul_dokumen' => $document->judul_dokumen,
+            'deskripsi_dokumen' => $document->deskripsi_dokumen,
+            'kategori_dokumen' => $document->kategori_dokumen,
+            'tahun_dokumen' => $document->tahun_dokumen,
+            'dokumen_file' => $document->dokumen_file,
+            'tags' => $document->tags,
+            'status' => 'draft',
+        ]);
+    
+        // Log informasi draft setelah pemindahan
+        Log::info('Dokumen dipindahkan ke draft', ['draft' => $draft]);
+    
+        // Hapus dokumen dari tabel Dokumen
+        $document->delete();
+    
+        // Log setelah penghapusan dokumen
+        Log::info('Dokumen dihapus dari tabel dokumens', ['document' => $document]);
+    
+        return redirect()->route('list-dokumen')->with('success', 'Dokumen berhasil dihapus');
     }
 
 };

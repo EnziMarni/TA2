@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DokumenController;
+use App\Http\Controllers\DraftDocumentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,12 @@ Route::delete('/dokumen/{id}', [DokumenController::class, 'destroy'])->name('dok
 Route::put('/dokumen/{id}', [DokumenController::class, 'update'])->name('dokumen.update');
 Route::get('/search-dokumen', [DokumenController::class, 'search'])->name('search-dokumen');
 
-Route::get('/draft-dokumen', [DokumenController::class, 'draftDocuments'])->name('draft-dokumen');
+Route::get('/dokumens', [DraftDocumentController::class, 'index'])->name('dokumens.index');
+Route::delete('/dokumens/{id}/draft', [DraftDocumentController::class, 'moveToDraft'])->name('dokumens.moveToDraft');
+// Rute untuk halaman draft dokumen
+Route::get('/draft-dokumen', [DraftDocumentController::class, 'index'])->name('draft-dokumen');
+// Rute untuk memindahkan dokumen ke draft
+Route::post('/dokumens/{id}/draft', [DraftDocumentController::class, 'moveToDraft'])->name('dokumens.moveToDraft');
+
 
 
