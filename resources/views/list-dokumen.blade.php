@@ -79,9 +79,9 @@
                                         <i class="fa fa-download"></i>
                                     </a>
                                     <!-- Icon untuk delete -->
-                                    <form action="{{ route('dokumens.moveToDraft', $document->id) }}" method="POST" style="display: inline;">
+                                    <form action="{{ route('dokumen.moveToDraft', $document->id) }}" method="POST" style="display: inline;">
                                         @csrf
-                                        @method('DELETE') <!-- Spoofing metode DELETE -->
+                                        @method('POST') <!-- Spoofing metode DELETE -->
                                         <button type="submit" style="border: none; background-color: transparent;" onclick="return confirm('Apakah Anda yakin ingin menghapus dokumen ini?')">
                                             <i class="fa fa-trash" aria-hidden="true" style="color: red;"></i>
                                         </button>

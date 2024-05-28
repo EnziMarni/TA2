@@ -32,12 +32,12 @@ Route::delete('/dokumen/{id}', [DokumenController::class, 'destroy'])->name('dok
 Route::put('/dokumen/{id}', [DokumenController::class, 'update'])->name('dokumen.update');
 Route::get('/search-dokumen', [DokumenController::class, 'search'])->name('search-dokumen');
 
+Route::post('/dokumen/{id}/move-to-draft', [DokumenController::class, 'moveToDraft'])->name('dokumen.moveToDraft');
+Route::delete('/draft/{id}/delete', [DraftDocumentController::class, 'delete'])->name('draft.delete');
 Route::get('/dokumens', [DraftDocumentController::class, 'index'])->name('dokumens.index');
 Route::delete('/dokumens/{id}/draft', [DraftDocumentController::class, 'moveToDraft'])->name('dokumens.moveToDraft');
-// Rute untuk halaman draft dokumen
 Route::get('/draft-dokumen', [DraftDocumentController::class, 'index'])->name('draft-dokumen');
-// Rute untuk memindahkan dokumen ke draft
-Route::post('/dokumens/{id}/draft', [DraftDocumentController::class, 'moveToDraft'])->name('dokumens.moveToDraft');
+
 
 
 

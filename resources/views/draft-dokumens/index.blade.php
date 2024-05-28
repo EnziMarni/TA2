@@ -40,7 +40,7 @@
                             <td>{{ $dokumen->judul_dokumen }}</td>
                             <td>
                                 <!-- Icon untuk delete -->
-                                <form action="{{ route('dokumens.moveToDraft', $dokumen->id) }}" method="POST" style="display: inline;">
+                                <form action="{{ route('draft.delete', $dokumen->id) }}" method="POST" style="display: inline;">
                                     @csrf
                                     @method('DELETE') <!-- Spoofing metode DELETE -->
                                     <button type="submit" style="border: none; background-color: transparent;" onclick="return confirm('Apakah Anda yakin ingin menghapus dokumen ini dari draft?')">

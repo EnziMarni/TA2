@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Dokumen;
+use App\Models\Draft;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
+
 
 
 
@@ -90,7 +92,7 @@ class DokumenController extends Controller
     }
     // DokumenController.php
 
-    public function destroy($id)
+    public function moveToDraft($id)
     {
         $document = Dokumen::findOrFail($id);
     
