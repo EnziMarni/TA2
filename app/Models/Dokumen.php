@@ -10,6 +10,7 @@ class Dokumen extends Model
             'judul_dokumen',
             'deskripsi_dokumen',
             'kategori_dokumen',
+            'validasi_dokumen',
             'tahun_dokumen',
             'dokumen_file',
             'tags',

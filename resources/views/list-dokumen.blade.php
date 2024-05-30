@@ -50,6 +50,7 @@
                             <th scope="col">Judul Dokumen</th>
                             <th scope="col">Deskripsi</th>
                             <th scope="col">Kategori</th>
+                            <th scope="col">Validasi Dokumen</th>
                             <th scope="col">Tahun Dokumen</th>
                             <th scope="col">File</th>
                             <th scope="col">Tags</th>
@@ -64,6 +65,7 @@
                                 <td>{{ $document->judul_dokumen }}</td>
                                 <td>{{ $document->deskripsi_dokumen }}</td>
                                 <td>{{ $document->kategori_dokumen }}</td>
+                                <td>{{$document->validasi_dokumen}}</td>
                                 <td>{{ $document->tahun_dokumen}}</td>
                                 <td>
                                     <a href="{{ asset('storage/documents/' . $document->dokumen_file) }}" target="_blank">

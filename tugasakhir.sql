@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 26, 2024 at 12:24 PM
+-- Generation Time: May 30, 2024 at 03:08 PM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.3
 
@@ -32,6 +32,7 @@ CREATE TABLE `dokumens` (
   `judul_dokumen` varchar(255) NOT NULL,
   `deskripsi_dokumen` text NOT NULL,
   `kategori_dokumen` varchar(255) NOT NULL,
+  `validasi_dokumen` varchar(255) NOT NULL,
   `tahun_dokumen` year(4) NOT NULL,
   `dokumen_file` varchar(255) NOT NULL,
   `tags` varchar(255) DEFAULT NULL,
@@ -44,11 +45,10 @@ CREATE TABLE `dokumens` (
 -- Dumping data for table `dokumens`
 --
 
-INSERT INTO `dokumens` (`id`, `judul_dokumen`, `deskripsi_dokumen`, `kategori_dokumen`, `tahun_dokumen`, `dokumen_file`, `tags`, `status`, `created_at`, `updated_at`) VALUES
-(27, 'Dokumen Pemberitahuan', 'dokumen pemberitahuan mahasiswa', 'Dokumen visi misi', 2024, '1716200103.pdf', 'pemberitahuan, dokumen', '', '2024-05-20 03:15:04', '2024-05-20 03:49:09'),
-(29, 'Dokumen Sertifikat', 'Sertifikat organisasi', 'Dokumen visi misi', 2024, '1716468935.pdf', 'sertifikat, mahasiswa', '', '2024-05-23 05:55:36', '2024-05-23 05:55:36'),
-(33, 'Dokumen Test', 'Deskripsi Dokumen Test', 'Dokumen Strategi', 2024, '1716472048.pdf', 'Test,Automated', '', '2024-05-23 06:47:28', '2024-05-23 06:47:28'),
-(42, 'iuran', 'iuran bencana', 'Dokumen visi misi', 2024, '1716726085.pdf', 'dokumen, pemberitahuan', 'active', '2024-05-26 05:21:25', '2024-05-26 05:21:25');
+INSERT INTO `dokumens` (`id`, `judul_dokumen`, `deskripsi_dokumen`, `kategori_dokumen`, `validasi_dokumen`, `tahun_dokumen`, `dokumen_file`, `tags`, `status`, `created_at`, `updated_at`) VALUES
+(36, 'Dokumen Keuangan Tahunan', 'keuangan jurusan', 'Dokumen visi misi', 'Direktur', 2023, '1717078390.pdf', 'dokumen, pemberitahuan, laporan', 'active', '2024-05-30 07:13:10', '2024-05-30 07:13:10'),
+(37, 'Dokumen Test', 'Deskripsi Dokumen Test', 'Dokumen Strategi', 'Direktur', 2024, '1717078741.pdf', 'Test,Automated', 'active', '2024-05-30 07:19:01', '2024-05-30 07:19:01'),
+(39, 'Dokumen Automation Testing', 'Deskripsi Dokumen Test', 'Dokumen Strategi', 'Ketua Jurusan', 2024, '1717080024.pdf', 'Test,Automated', 'active', '2024-05-30 07:40:24', '2024-05-30 07:40:24');
 
 -- --------------------------------------------------------
 
@@ -61,6 +61,7 @@ CREATE TABLE `draft` (
   `judul_dokumen` varchar(225) CHARACTER SET utf8mb4 NOT NULL,
   `deskripsi_dokumen` text CHARACTER SET utf8mb4 NOT NULL,
   `kategori_dokumen` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
+  `validasi_dokumen` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
   `tahun_dokumen` year(4) NOT NULL,
   `dokumen_file` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
   `tags` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
@@ -73,8 +74,11 @@ CREATE TABLE `draft` (
 -- Dumping data for table `draft`
 --
 
-INSERT INTO `draft` (`id`, `judul_dokumen`, `deskripsi_dokumen`, `kategori_dokumen`, `tahun_dokumen`, `dokumen_file`, `tags`, `status`, `updated_at`, `created_at`) VALUES
-(2, 'iuran', 'iuran bencana', 'Dokumen visi misi', 2024, '1716726085.pdf', 'dokumen, pemberitahuan', 'draft', '2024-05-26 05:22:36', '2024-05-26 05:22:36');
+INSERT INTO `draft` (`id`, `judul_dokumen`, `deskripsi_dokumen`, `kategori_dokumen`, `validasi_dokumen`, `tahun_dokumen`, `dokumen_file`, `tags`, `status`, `updated_at`, `created_at`) VALUES
+(9, 'Dokumen Sertifikat', 'Sertifikat organisasi', 'prodi', '', 2023, '1717037790.pdf', 'sertifikat, mahasiswa', 'draft', '2024-05-29 20:40:12', '2024-05-29 20:40:12'),
+(10, 'Dokumen Test', 'Deskripsi Dokumen Test', 'jurusan', '', 2024, '1717075987.pdf', 'Test,Automated', 'draft', '2024-05-30 06:33:13', '2024-05-30 06:33:13'),
+(11, 'Dokumen Laporan', 'Dokumen berisi laporan kegiatan', 'Dokumen visi misi', '', 2024, '1717041953.pdf', 'dokumen, laporan', 'draft', '2024-05-30 07:13:55', '2024-05-30 07:13:55'),
+(12, 'Dokumen Pemberitahuan', 'dokumen pemberitahuan mahasiswa', 'Dokumen Mahasiswa', '', 2023, '1717076547.pdf', 'dokumen, pemberitahuan', 'draft', '2024-05-30 07:14:03', '2024-05-30 07:14:03');
 
 -- --------------------------------------------------------
 
@@ -229,7 +233,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'super user', 'superuser@example.com', NULL, '$2y$12$3U52mGDwQa42EB7wGtvEoev4OG3WqRFwtggZ1ynhrcg8OVNQfoNQO', 'OFUxlic22AhEe258qvYbZrpSjWz5jXnPzxsdO3e8NcjgcgsxKII1Ifgfqojz', '2024-05-09 00:52:21', '2024-05-09 00:52:21');
+(1, 'super user', 'superuser@example.com', NULL, '$2y$12$3U52mGDwQa42EB7wGtvEoev4OG3WqRFwtggZ1ynhrcg8OVNQfoNQO', '7esIZW5uoS6OPL8XBE35nPFN2FdgWllTpTiMn6LJ5fLEEwuQG5hss0npJln9', '2024-05-09 00:52:21', '2024-05-09 00:52:21');
 
 --
 -- Indexes for dumped tables
@@ -307,13 +311,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `dokumens`
 --
 ALTER TABLE `dokumens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `draft`
 --
 ALTER TABLE `draft`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `draft_documents`

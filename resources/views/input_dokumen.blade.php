@@ -56,6 +56,16 @@
                         </select>
                 </div>
 
+                <div style="margin-left:200px; margin-top:10px">
+                    <label>Validasi Dokumen:</label>
+                        <select name="validasi_dokumen" class="form-control" required>
+                            <option value="Direktur">Direktur</option>
+                            <option value="Ketua Jurusan">Ketua Jurusan</option>
+                            <option value="Ketua Program Studi">Ketua Program Studi</option>
+                            <option value="Kelompok Bidang Keahlian">Kelompok Bidang Keahlian</option>
+                        </select>
+                </div>
+
                 <div>
                     <label for="tahunDokumen" class="form-label">Tahun Dokumen:</label>
                     <input type="number" class="form-control" name="tahun_dokumen" id="tahunDokumen" style="margin-left:200px; position:relative; z-index: 1;" min="1900" max="2100" required>

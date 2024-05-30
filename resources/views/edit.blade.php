@@ -26,21 +26,38 @@
                     </div>
                     <div style="margin-left:200px; margin-top:10px">
                         <label>Kategori Dokumen:</label>
-                        <select name="kategori_dokumen" class="form-control">
-                            <option value="jurusan" {{ $document->kategori_dokumen == 'jurusan' ? 'selected' : '' }}>Jurusan</option>
-                            <option value="prodi" {{ $document->kategori_dokumen == 'prodi' ? 'selected' : '' }}>Program Studi</option>
-                            <option value="umum" {{ $document->kategori_dokumen == 'umum' ? 'selected' : '' }}>Umum</option>
+                        <select name="kategori_dokumen" value="{{$document ->kategori_dokumen}}" class="form-control" required>
+                            <option value="Dokumen visi misi">Dokumen Visi Misi</option>
+                            <option value="Dokumen Tujuan">Dokumen Tujuan</option>
+                            <option value="Dokumen Strategi">Dokumen Strategi</option>
+                            <option value="Dokumen Tata Pamong">Dokumen Tata Pamong</option>
+                            <option value="Dokumen Tata Kelola">Dokumen Tata Kelola</option>
+                            <option value="Dokumen Kerjasama">Dokumen Kerjasama</option>
+                            <option value="Dokumen Mahasiswa">Dokumen Mahasiswa</option>
+                            <option value="Dokumen Sumber Daya Manusia">Dokumen Sumber Daya Manusia</option>
+                            <option value="Dokumen Keuangan">Dokumen Keuangan</option>
+                            <option value="Dokumen Sarana Prasarana">Dokumen Sarana Prasarana</option>
+                            <option value="Dokumen Pendidikan">Dokumen Pendidikan</option>
+                            <option value="Dokumen Penelitian">Dokumen Penelitian</option>
+                            <option value="Dokumen Pengabdian Kepada Masyarakat">Dokumen Pengabdian Kepada Masyarakat</option>
+                            <option value="Dokumen Iuran">Dokumen Iuran</option>
+                            <option value="Dokumen Capaian Tridarma">Dokumen Capaian Tridarma</option>
                         </select>
                     </div>
+                    <!-- validasi dokumen -->
                     <div>
                         <label for="tahunDokumen" class="form-label">Tahun Dokumen:</label>
-                        <input type="number" class="form-control" name="tahun_dokumen" id="tahunDokumen" style="margin-left:200px; position:relative; z-index: 1;" min="1900" max="2100" required>
+                        <input type="number" class="form-control" name="tahun_dokumen" value="{{ $document->tahun_dokumen }}" id="tahunDokumen" style="margin-left:200px; position:relative; z-index: 1;" min="1900" max="2100" required>
                     </div>
 
                     <div class="mb-3">
                         <label for="formFile" class="form-label">File Dokumen:</label>
                         <input class="form-control" type="file" id="editFile" name="edit_dokumen_file" style="margin-left:200px">
+                        <div>
+                            <small style="margin-left:200px">File yang sudah diunggah: {{ $document->dokumen_file}}</small>
+                        </div>
                     </div>
+
 
                     <div class="form-label">
                         <div>

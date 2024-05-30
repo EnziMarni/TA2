@@ -30,6 +30,7 @@ class DraftDocumentController extends Controller
                 'judul_dokumen' => $dokumen->judul_dokumen,
                 'deskripsi_dokumen' => $dokumen->deskripsi_dokumen,
                 'kategori_dokumen' => $dokumen->kategori_dokumen,
+                'validasi_dokumen' =>$dokumen ->validasi_dokumen,
                 'tahun_dokumen' => $dokumen->tahun_dokumen,
                 'dokumen_file' => $dokumen->dokumen_file,
                 'tags' => $dokumen->tags,

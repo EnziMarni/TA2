@@ -23,6 +23,7 @@ class DokumenController extends Controller
             'judul_dokumen' => 'required|string|max:255',
             'deskripsi_dokumen' => 'required|string',
             'kategori_dokumen' => 'required|string',
+            'validasi_dokumen' =>'required|string',
             'tahun_dokumen' => 'required|int',
             'dokumen_file' => 'required|file|mimes:pdf,docx,jpeg,png,jpg|max:2048', // Adjust file types and size limits as needed
             'tags' => 'nullable|string',
@@ -36,6 +37,7 @@ class DokumenController extends Controller
             'judul_dokumen' => $validatedData['judul_dokumen'],
             'deskripsi_dokumen' => $validatedData['deskripsi_dokumen'],
             'kategori_dokumen' => $validatedData['kategori_dokumen'],
+            'validasi_dokumen' =>$validatedData['validasi_dokumen'],
             'tahun_dokumen' => $validatedData['tahun_dokumen'],
             'dokumen_file' => $fileName,
             'tags' => $validatedData['tags'],
@@ -71,6 +73,7 @@ class DokumenController extends Controller
             'judul_dokumen' => 'required|string|max:255',
             'deskripsi_dokumen' => 'required|string',
             'kategori_dokumen' => 'required|string',
+            'validasi_dokumen' => 'required|string',
             'tahun_dokumen' => 'required|int',
             'dokumen_file' => 'nullable|file|mimes:pdf,docx,jpeg,png,jpg|max:2048',
             'tags' => 'nullable|string',
@@ -78,15 +81,27 @@ class DokumenController extends Controller
             
         ]);
         if ($request->hasFile('edit_dokumen_file')) {
-            // Handle file upload
-            $fileName = time().'.'.$request->edit_dokumen_file->getClientOriginalExtension();
+            // Hapus file lama jika ada
+            if ($document->dokumen_file) {
+                Storage::disk('public')->delete('documents/' . $document->dokumen_file);
+            }
+    
+            // Unggah file baru
+            $fileName = time() . '.' . $request->edit_dokumen_file->getClientOriginalExtension();
             $request->edit_dokumen_file->storeAs('public/documents', $fileName);
             
-            // Update document file name
+            // Update nama file dokumen
             $document->dokumen_file = $fileName;
         }
-
-        $document->update($validatedData);
+    
+        // Update data dokumen
+        $document->judul_dokumen = $validatedData['judul_dokumen'];
+        $document->deskripsi_dokumen = $validatedData['deskripsi_dokumen'];
+        $document->kategori_dokumen = $validatedData['kategori_dokumen'];
+        $document->validasi_dokumen = $validatedData['validasi_dokumen'];
+        $document->tahun_dokumen = $validatedData['tahun_dokumen'];
+        $document->tags = $validatedData['tags'];
+        $document->save();
 
         return redirect()->route('list-dokumen')->with('success', 'Details dokumen berhasil diperbarui.');
     }
@@ -104,6 +119,7 @@ class DokumenController extends Controller
             'judul_dokumen' => $document->judul_dokumen,
             'deskripsi_dokumen' => $document->deskripsi_dokumen,
             'kategori_dokumen' => $document->kategori_dokumen,
+            'validasi_dokumen'=>$document ->validasi_dokumen,
             'tahun_dokumen' => $document->tahun_dokumen,
             'dokumen_file' => $document->dokumen_file,
             'tags' => $document->tags,
