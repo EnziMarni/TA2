@@ -42,7 +42,7 @@
                                 <!-- Icon untuk delete -->
                                 <form action="{{ route('draft.delete', $dokumen->id) }}" method="POST" style="display: inline;">
                                     @csrf
-                                    @method('DELETE') <!-- Spoofing metode DELETE -->
+                                    @method('DELETE') 
                                     <button type="submit" style="border: none; background-color: transparent;" onclick="return confirm('Apakah Anda yakin ingin menghapus dokumen ini dari draft?')">
                                         <i class="fa fa-trash" aria-hidden="true" style="color: red;"></i>
                                     </button>

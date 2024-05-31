@@ -9,7 +9,7 @@ class SearchController extends Controller
     public function search(Request $request)
     {
         $query = $request->input('query');
-        $results = YourModel::where('column_name', 'like', '%'.$query.'%')->get(); // Sesuaikan dengan nama kolom di tabel Anda
+        $results = YourModel::where('column_name', 'like', '%'.$query.'%')->get(); 
 
         return view('search-results', ['results' => $results]);
     }

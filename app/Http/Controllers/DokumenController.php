@@ -25,11 +25,11 @@ class DokumenController extends Controller
             'kategori_dokumen' => 'required|string',
             'validasi_dokumen' =>'required|string',
             'tahun_dokumen' => 'required|int',
-            'dokumen_file' => 'required|file|mimes:pdf,docx,jpeg,png,jpg|max:2048', // Adjust file types and size limits as needed
+            'dokumen_file' => 'required|file|mimes:pdf,docx,jpeg,png,jpg|max:2048', 
             'tags' => 'nullable|string',
         ]);
 
-        // Handle file upload (assuming 'dokumen_file' is the file input name)
+      
         $fileName = time().'.'.$request->dokumen_file->getClientOriginalExtension();
         $request->dokumen_file->storeAs('public/documents', $fileName);
 
@@ -105,7 +105,7 @@ class DokumenController extends Controller
 
         return redirect()->route('list-dokumen')->with('success', 'Details dokumen berhasil diperbarui.');
     }
-    // DokumenController.php
+    
 
     public function moveToDraft($id)
     {
@@ -114,7 +114,7 @@ class DokumenController extends Controller
         // Log informasi dokumen sebelum pemindahan
         Log::info('Menghapus dokumen dengan ID: '.$id, ['document' => $document]);
     
-        // Pindahkan data ke tabel drafts sebelum menghapus dari dokumen
+        // Memindahkan data ke tabel drafts sebelum menghapus dari dokumen
         $draft = Draft::create([
             'judul_dokumen' => $document->judul_dokumen,
             'deskripsi_dokumen' => $document->deskripsi_dokumen,
