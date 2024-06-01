@@ -12,6 +12,15 @@
         <div class="tab-content" id="v-pills-tabContent">
             <div class="tab-pane fade show active" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                 <h3 class="judul">EDIT DOKUMEN</h3>
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <form action="{{ route('dokumen.update', $document->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="_method" value="PUT">
@@ -26,25 +35,34 @@
                     </div>
                     <div style="margin-left:200px; margin-top:10px">
                         <label>Kategori Dokumen:</label>
-                        <select name="kategori_dokumen" value="{{$document ->kategori_dokumen}}" class="form-control" required>
-                            <option value="Dokumen visi misi">Dokumen Visi Misi</option>
-                            <option value="Dokumen Tujuan">Dokumen Tujuan</option>
-                            <option value="Dokumen Strategi">Dokumen Strategi</option>
-                            <option value="Dokumen Tata Pamong">Dokumen Tata Pamong</option>
-                            <option value="Dokumen Tata Kelola">Dokumen Tata Kelola</option>
-                            <option value="Dokumen Kerjasama">Dokumen Kerjasama</option>
-                            <option value="Dokumen Mahasiswa">Dokumen Mahasiswa</option>
-                            <option value="Dokumen Sumber Daya Manusia">Dokumen Sumber Daya Manusia</option>
-                            <option value="Dokumen Keuangan">Dokumen Keuangan</option>
-                            <option value="Dokumen Sarana Prasarana">Dokumen Sarana Prasarana</option>
-                            <option value="Dokumen Pendidikan">Dokumen Pendidikan</option>
-                            <option value="Dokumen Penelitian">Dokumen Penelitian</option>
-                            <option value="Dokumen Pengabdian Kepada Masyarakat">Dokumen Pengabdian Kepada Masyarakat</option>
-                            <option value="Dokumen Iuran">Dokumen Iuran</option>
-                            <option value="Dokumen Capaian Tridarma">Dokumen Capaian Tridarma</option>
+                        <select name="kategori_dokumen" class="form-control" required>
+                            <option value="Dokumen Visi Misi" {{ $document->kategori_dokumen == 'Dokumen Visi Misi' ? 'selected' : '' }}>Dokumen Visi Misi</option>
+                            <option value="Dokumen Tujuan" {{ $document->kategori_dokumen == 'Dokumen Tujuan' ? 'selected' : '' }}>Dokumen Tujuan</option>
+                            <option value="Dokumen Strategi" {{ $document->kategori_dokumen == 'Dokumen Strategi' ? 'selected' : '' }}>Dokumen Strategi</option>
+                            <option value="Dokumen Tata Pamong" {{ $document->kategori_dokumen == 'Dokumen Tata Pamong' ? 'selected' : '' }}>Dokumen Tata Pamong</option>
+                            <option value="Dokumen Tata Kelola" {{ $document->kategori_dokumen == 'Dokumen Tata Kelola' ? 'selected' : '' }}>Dokumen Tata Kelola</option>
+                            <option value="Dokumen Kerjasama" {{ $document->kategori_dokumen == 'Dokumen Kerjasama' ? 'selected' : '' }}>Dokumen Kerjasama</option>
+                            <option value="Dokumen Mahasiswa" {{ $document->kategori_dokumen == 'Dokumen Mahasiswa' ? 'selected' : '' }}>Dokumen Mahasiswa</option>
+                            <option value="Dokumen Sumber Daya Manusia" {{ $document->kategori_dokumen == 'Dokumen Sumber Daya Manusia' ? 'selected' : '' }}>Dokumen Sumber Daya Manusia</option>
+                            <option value="Dokumen Keuangan" {{ $document->kategori_dokumen == 'Dokumen Keuangan' ? 'selected' : '' }}>Dokumen Keuangan</option>
+                            <option value="Dokumen Sarana Prasarana" {{ $document->kategori_dokumen == 'Dokumen Sarana Prasarana' ? 'selected' : '' }}>Dokumen Sarana Prasarana</option>
+                            <option value="Dokumen Pendidikan" {{ $document->kategori_dokumen == 'Dokumen Pendidikan' ? 'selected' : '' }}>Dokumen Pendidikan</option>
+                            <option value="Dokumen Penelitian" {{ $document->kategori_dokumen == 'Dokumen Penelitian' ? 'selected' : '' }}>Dokumen Penelitian</option>
+                            <option value="Dokumen Pengabdian Kepada Masyarakat" {{ $document->kategori_dokumen == 'Dokumen Pengabdian Kepada Masyarakat' ? 'selected' : '' }}>Dokumen Pengabdian Kepada Masyarakat</option>
+                            <option value="Dokumen Iuran" {{ $document->kategori_dokumen == 'Dokumen Iuran' ? 'selected' : '' }}>Dokumen Iuran</option>
+                            <option value="Dokumen Capaian Tridarma" {{ $document->kategori_dokumen == 'Dokumen Capaian Tridarma' ? 'selected' : '' }}>Dokumen Capaian Tridarma</option>
                         </select>
                     </div>
                     <!-- validasi dokumen -->
+                    <div style="margin-left:200px; margin-top:10px">
+                        <label>Validasi Dokumen:</label>
+                        <select name="validasi_dokumen" class="form-control" required>
+                            <option value="Direktur" {{ $document->validasi_dokumen == 'Direktur' ? 'selected' : '' }}>Direktur</option>
+                            <option value="Ketua Jurusan" {{ $document->validasi_dokumen == 'Ketua Jurusan' ? 'selected' : '' }}>Ketua Jurusan</option>
+                            <option value="Ketua Program Studi" {{ $document->validasi_dokumen == 'Ketua Program Studi' ? 'selected' : '' }}>Ketua Program Studi</option>
+                            <option value="Kelompok Bidang Keahlian" {{ $document->validasi_dokumen == 'Kelompok Bidang Keahlian' ? 'selected' : '' }}>Kelompok Bidang Keahlian</option>
+                        </select>
+                    </div>
                     <div>
                         <label for="tahunDokumen" class="form-label">Tahun Dokumen:</label>
                         <input type="number" class="form-control" name="tahun_dokumen" value="{{ $document->tahun_dokumen }}" id="tahunDokumen" style="margin-left:200px; position:relative; z-index: 1;" min="1900" max="2100" required>

@@ -81,7 +81,6 @@ class DokumenController extends Controller
             
         ]);
         if ($request->hasFile('edit_dokumen_file')) {
-            // Hapus file lama jika ada
             if ($document->dokumen_file) {
                 Storage::disk('public')->delete('documents/' . $document->dokumen_file);
             }

@@ -53,7 +53,8 @@
                         <th scope="col">Kategori</th>
                         <th scope="col">Validasi Dokumen</th>
                         <th scope="col">Tahun Dokumen</th>
-                        <th scope="col">File</th>                                <th scope="col">Tags</th>
+                        <th scope="col">File</th>                                
+                        <th scope="col">Tags</th>
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>

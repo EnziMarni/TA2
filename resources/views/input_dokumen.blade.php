@@ -38,7 +38,7 @@
                 <div style="margin-left:200px; margin-top:10px">
                     <label>Kategori Dokumen:</label>
                         <select name="kategori_dokumen" class="form-control" required>
-                            <option value="Dokumen visi misi">Dokumen Visi Misi</option>
+                            <option value="Dokumen Visi Misi">Dokumen Visi Misi</option>
                             <option value="Dokumen Tujuan">Dokumen Tujuan</option>
                             <option value="Dokumen Strategi">Dokumen Strategi</option>
                             <option value="Dokumen Tata Pamong">Dokumen Tata Pamong</option>
@@ -85,6 +85,8 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary" style="margin-left:200px">Submit</button>
+                <button type="button" id="cancelButton" class="btn btn-secondary" style="margin-left:10px">Cancel</button>
+            
             </form>
         </div>
     </div>
