@@ -11,11 +11,11 @@
                 <a class="nav-link active" id="v-pills-messages-tab" href="{{ route('draft-dokumen') }}" role="tab" aria-controls="v-pills-messages" aria-selected="false">Draft Dokumen</a>
             </div>
         </div>
-        <div class="col-md-9" style="margin-left:200px">
+        <div class="col-md-9">
             <!-- Konten Draft Dokumen -->
-            <h1>Draft Dokumen</h1>
+            <h3 class="judul">Draft Dokumen</h3>
             @if (session('status'))
-                <div class="alert alert-success">
+                <div class="alert alert-success" style="margin-left:200px">
                     {{ session('status') }}
                 </div>
             @endif
@@ -25,11 +25,12 @@
                 </div>
             @endif
           
-            <table class="table">
+            <table class="table" style="margin-left:200px">
                 <thead>
                     <tr>
                         <th scope="col">No</th>
                         <th scope="col">Judul Dokumen</th>
+                        <th scope="col">Kategori Dokumen</th>
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
@@ -38,6 +39,7 @@
                         <tr>
                             <td>{{ $index + 1 }}</td>
                             <td>{{ $dokumen->judul_dokumen }}</td>
+                            <td>{{$dokumen->kategori_dokumen}}</td>
                             <td>
                                 <!-- Icon untuk delete -->
                                 <form action="{{ route('draft.delete', $dokumen->id) }}" method="POST" style="display: inline;">

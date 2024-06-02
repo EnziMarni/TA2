@@ -19,9 +19,8 @@ class DraftDocumentController extends Controller
         $draft = Draft::findOrFail($id);
         $draft->delete();
 
-        return redirect()->route('draft-dokumen.index')->with('status', 'Dokumen berhasil dihapus dari draft');
+        return redirect()->route('draft-dokumen')->with('status', 'Dokumen berhasil dihapus dari draft');
     }
-
      public function moveToDraft($id)
      {
         $dokumen = Dokumen::find($id);

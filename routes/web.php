@@ -31,7 +31,11 @@ Route::get('/dokumen/{id}/edit', [DokumenController::class, 'edit'])->name('doku
 Route::put('/dokumen/{id}', [DokumenController::class, 'update'])->name('dokumen.update');
 Route::get('/search-dokumen', [DokumenController::class, 'search'])->name('search-dokumen');
 Route::post('/dokumen/{id}/move-to-draft', [DokumenController::class, 'moveToDraft'])->name('dokumen.moveToDraft');
-Route::delete('/draft/{id}/delete', [DraftDocumentController::class, 'delete'])->name('draft.delete');
+
+Route::get('/draft', [DraftDocumentController::class, 'index'])->name('draft-dokumen');
+Route::delete('/draft/{id}', [DraftDocumentController::class, 'delete'])->name('draft.delete');
+
+
 Route::get('/dokumens', [DraftDocumentController::class, 'index'])->name('dokumens.index');
 Route::delete('/dokumens/{id}/draft', [DraftDocumentController::class, 'moveToDraft'])->name('dokumens.moveToDraft');
 Route::get('/draft-dokumen', [DraftDocumentController::class, 'index'])->name('draft-dokumen');
