@@ -32,8 +32,9 @@ class DokumenController extends Controller
         ]);
 
       
-        $fileName = time().'.'.$request->dokumen_file->getClientOriginalExtension();
+        $fileName = $request->dokumen_file->getClientOriginalName();
         $request->dokumen_file->storeAs('public/documents', $fileName);
+        
 
         $dokumen = Dokumen::create([
             'judul_dokumen' => $validatedData['judul_dokumen'],
@@ -86,11 +87,9 @@ class DokumenController extends Controller
             if ($document->dokumen_file) {
                 Storage::disk('public')->delete('documents/' . $document->dokumen_file);
             }
-    
             // Unggah file baru
             $fileName = time() . '.' . $request->edit_dokumen_file->getClientOriginalExtension();
             $request->edit_dokumen_file->storeAs('public/documents', $fileName);
-            
             // Update nama file dokumen
             $document->dokumen_file = $fileName;
         }
@@ -107,15 +106,12 @@ class DokumenController extends Controller
         return redirect()->route('list-dokumen')->with('success', 'Details dokumen berhasil diperbarui.');
     }
     
-
     public function moveToDraft($id)
     {
         $document = Dokumen::findOrFail($id);
     
-        // Log informasi dokumen sebelum pemindahan
         Log::info('Menghapus dokumen dengan ID: '.$id, ['document' => $document]);
-    
-        // Memindahkan data ke tabel drafts sebelum menghapus dari dokumen
+
         $draft = Draft::create([
             'judul_dokumen' => $document->judul_dokumen,
             'deskripsi_dokumen' => $document->deskripsi_dokumen,
@@ -126,14 +122,12 @@ class DokumenController extends Controller
             'tags' => $document->tags,
             'status' => 'draft',
         ]);
-    
-        // Log informasi draft setelah pemindahan
+
         Log::info('Dokumen dipindahkan ke draft', ['draft' => $draft]);
     
         // Hapus dokumen dari tabel Dokumen
         $document->delete();
-    
-        // Log setelah penghapusan dokumen
+  
         Log::info('Dokumen dihapus dari tabel dokumens', ['document' => $document]);
     
         return redirect()->route('list-dokumen')->with('success', 'Dokumen berhasil dihapus');

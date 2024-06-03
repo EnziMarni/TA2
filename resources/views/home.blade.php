@@ -15,10 +15,10 @@
     <!-- Konten -->
 <div class="container-fluid" style="margin-left: 220px; display: flex; align-items: center; justify-content: space-around;">
     <div style="flex: 1; min-width: 0; padding-right: 20px;">
-        <h1 style="font-size: 50px; font-family:'Playfair Display', serif;">SELAMAT DATANG <br>DI HALAMAN HOME!</h1> <!-- Ukuran font diperbesar -->
+        <h1 style="font-size: 50px; font-family:'Playfair Display', serif;">SELAMAT DATANG <br>DI HALAMAN HOME!</h1>
     </div>
     <div style="flex: 1; min-width: 0; display: flex; justify-content: center;">
-        <img src="{{ asset('images/gambar.png') }}" alt="Deskripsi Gambar" style="width: auto; max-width: 110%; height: 400px;"> <!-- Tinggi gambar diatur, lebar menyesuaikan -->
+        <img src="{{ asset('images/gambar.png') }}" alt="Deskripsi Gambar" style="width: auto; max-width: 110%; height: 400px;"> 
     </div>
 </div>
 

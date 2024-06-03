@@ -85,7 +85,7 @@
                     </div>
                     
                     <button type="submit" class="btn btn-primary" style="margin-left:200px">Update</button>
-                    <a href="{{ route('list-dokumen') }}" class="btn btn-secondary" style="margin-left:10px">Cancel</a>
+                    <button href="{{ route('list-dokumen') }}" class="btn btn-secondary" style="margin-left:10px">Cancel</button>
                 </form>
             </div>
         </div>

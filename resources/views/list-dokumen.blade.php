@@ -10,7 +10,7 @@
             <a class="nav-link" id="v-pills-messages-tab" href="{{ route('draft-dokumen') }}" role="tab" aria-controls="v-pills-messages" aria-selected="false">Draft Dokumen</a>
         </div>
         <div class="tab-content" id="v-pills-tabContent">
-            <h3 style="margin-left:200px;">List Dokumen</h3>
+            <h3 style="margin-left:200px;" class="judul">List Dokumen</h3>
             <!-- Icon search dan filter -->
             <div style="margin-left:200px; margin-bottom: 10px; display: flex; align-items:center;">
                 <div style="position: relative; width:500px">
@@ -64,7 +64,8 @@
                         <td>{{ $index + 1 }}</td>
                         <td>{{ $document->judul_dokumen }}</td>
                         <td>{{ $document->deskripsi_dokumen }}</td>
-                        <td>{{ $document->kategori_dokumen }}</td>                                <td>{{$document->validasi_dokumen}}</td>
+                        <td>{{ $document->kategori_dokumen }}</td>                                
+                        <td>{{$document->validasi_dokumen}}</td>
                         <td>{{ $document->tahun_dokumen}}</td>
                         <td>
                             <a href="{{ asset('storage/documents/' . $document->dokumen_file) }}" target="_blank">
@@ -102,7 +103,7 @@
         function searchByTitle() {
             // Mendapatkan nilai input pencarian
             var query = document.getElementById('search').value.trim().toLowerCase();
-
+            
             // Mendapatkan semua baris dalam tabel
             var rows = document.querySelectorAll('#documentTableBody tr');
 

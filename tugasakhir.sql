@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 30, 2024 at 03:08 PM
+-- Generation Time: Jun 03, 2024 at 03:05 PM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.3
 
@@ -46,9 +46,8 @@ CREATE TABLE `dokumens` (
 --
 
 INSERT INTO `dokumens` (`id`, `judul_dokumen`, `deskripsi_dokumen`, `kategori_dokumen`, `validasi_dokumen`, `tahun_dokumen`, `dokumen_file`, `tags`, `status`, `created_at`, `updated_at`) VALUES
-(36, 'Dokumen Keuangan Tahunan', 'keuangan jurusan', 'Dokumen visi misi', 'Direktur', 2023, '1717078390.pdf', 'dokumen, pemberitahuan, laporan', 'active', '2024-05-30 07:13:10', '2024-05-30 07:13:10'),
-(37, 'Dokumen Test', 'Deskripsi Dokumen Test', 'Dokumen Strategi', 'Direktur', 2024, '1717078741.pdf', 'Test,Automated', 'active', '2024-05-30 07:19:01', '2024-05-30 07:19:01'),
-(39, 'Dokumen Automation Testing', 'Deskripsi Dokumen Test', 'Dokumen Strategi', 'Ketua Jurusan', 2024, '1717080024.pdf', 'Test,Automated', 'active', '2024-05-30 07:40:24', '2024-05-30 07:40:24');
+(63, 'Dokumen Pemberitahuan', 'Dokumen berisi pemberitahuan', 'Dokumen Tata Pamong', 'Ketua Jurusan', 2023, 'Dokumen Internal.pdf', 'tag', 'active', '2024-06-03 07:55:35', '2024-06-03 07:55:35'),
+(64, 'Dokumen Laporan', 'Dokumen berisi laporan kegiatan', 'Dokumen Tata Kelola', 'Ketua Jurusan', 2022, 'Use Case Diagram.pdf', 'dokumen', 'active', '2024-06-03 07:57:35', '2024-06-03 07:57:35');
 
 -- --------------------------------------------------------
 
@@ -75,10 +74,8 @@ CREATE TABLE `draft` (
 --
 
 INSERT INTO `draft` (`id`, `judul_dokumen`, `deskripsi_dokumen`, `kategori_dokumen`, `validasi_dokumen`, `tahun_dokumen`, `dokumen_file`, `tags`, `status`, `updated_at`, `created_at`) VALUES
-(9, 'Dokumen Sertifikat', 'Sertifikat organisasi', 'prodi', '', 2023, '1717037790.pdf', 'sertifikat, mahasiswa', 'draft', '2024-05-29 20:40:12', '2024-05-29 20:40:12'),
-(10, 'Dokumen Test', 'Deskripsi Dokumen Test', 'jurusan', '', 2024, '1717075987.pdf', 'Test,Automated', 'draft', '2024-05-30 06:33:13', '2024-05-30 06:33:13'),
-(11, 'Dokumen Laporan', 'Dokumen berisi laporan kegiatan', 'Dokumen visi misi', '', 2024, '1717041953.pdf', 'dokumen, laporan', 'draft', '2024-05-30 07:13:55', '2024-05-30 07:13:55'),
-(12, 'Dokumen Pemberitahuan', 'dokumen pemberitahuan mahasiswa', 'Dokumen Mahasiswa', '', 2023, '1717076547.pdf', 'dokumen, pemberitahuan', 'draft', '2024-05-30 07:14:03', '2024-05-30 07:14:03');
+(19, 'Dokumen Laporan', 'Sertifikat organisasi', 'Dokumen Visi Misi', 'Ketua Jurusan', 2023, '1717425614.pdf', 'tag', 'draft', '2024-06-03 07:56:45', '2024-06-03 07:56:45'),
+(20, 'Judul dokumen', 'Ini adalah deskripsi dokume', 'Dokumen Strategi', 'Ketua Jurusan', 2024, '1717333249.pdf', 'tag1', 'draft', '2024-06-03 07:59:24', '2024-06-03 07:59:24');
 
 -- --------------------------------------------------------
 
@@ -233,7 +230,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'super user', 'superuser@example.com', NULL, '$2y$12$3U52mGDwQa42EB7wGtvEoev4OG3WqRFwtggZ1ynhrcg8OVNQfoNQO', '7esIZW5uoS6OPL8XBE35nPFN2FdgWllTpTiMn6LJ5fLEEwuQG5hss0npJln9', '2024-05-09 00:52:21', '2024-05-09 00:52:21');
+(1, 'super user', 'superuser@example.com', NULL, '$2y$12$3U52mGDwQa42EB7wGtvEoev4OG3WqRFwtggZ1ynhrcg8OVNQfoNQO', 'FV3eBb7LZYYVFpXTPv2GKoOq3wscZ6daRh3ZHOMg0rwZ1SEKcL74L22NVwJO', '2024-05-09 00:52:21', '2024-05-09 00:52:21');
 
 --
 -- Indexes for dumped tables
@@ -311,13 +308,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `dokumens`
 --
 ALTER TABLE `dokumens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT for table `draft`
 --
 ALTER TABLE `draft`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `draft_documents`
