@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DokumenController;
 use App\Http\Controllers\DraftDocumentController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,8 @@ Route::delete('/draft/{id}', [DraftDocumentController::class, 'delete'])->name('
 Route::get('/dokumens', [DraftDocumentController::class, 'index'])->name('dokumens.index');
 Route::delete('/dokumens/{id}/draft', [DraftDocumentController::class, 'moveToDraft'])->name('dokumens.moveToDraft');
 Route::get('/draft-dokumen', [DraftDocumentController::class, 'index'])->name('draft-dokumen');
+
+Route::get('/about-me', [UserController::class, 'aboutMe'])->name('about-me');
 
 
 

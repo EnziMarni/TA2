@@ -98,75 +98,79 @@
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Fungsi untuk melakukan pencarian berdasarkan judul dokumen
-        function searchByTitle() {
-            // Mendapatkan nilai input pencarian
-            var query = document.getElementById('search').value.trim().toLowerCase();
-            
-            // Mendapatkan semua baris dalam tabel
-            var rows = document.querySelectorAll('#documentTableBody tr');
+   document.addEventListener('DOMContentLoaded', function () {
+    // Fungsi untuk melakukan pencarian berdasarkan judul dokumen dan tag
+    function searchByTitleAndTag() {
+        // Mendapatkan nilai input pencarian
+        var query = document.getElementById('search').value.trim().toLowerCase();
+        
+        // Mendapatkan semua baris dalam tabel
+        var rows = document.querySelectorAll('#documentTableBody tr');
 
-            // Iterasi melalui setiap baris dalam tabel
-            rows.forEach(function(row) {
-                // Mendapatkan teks judul dokumen dalam baris saat ini
-                var title = row.cells[1].textContent.trim().toLowerCase();
+        // Iterasi melalui setiap baris dalam tabel
+        rows.forEach(function(row) {
+            // Mendapatkan teks judul dokumen dan tag dalam baris saat ini
+            var title = row.cells[1].textContent.trim().toLowerCase();
+            var tags = row.cells[7].textContent.toLowerCase();
+            var tagArray = tags.split(',').map(tag => tag.trim()); // Memecah string tags menjadi array dan trim setiap tag
 
-                // Memeriksa apakah judul dokumen mengandung kata kunci pencarian
-                if (title.includes(query)) {
-                    // Jika iya, tampilkan baris
-                    row.style.display = '';
-                } else {
-                    // Jika tidak, sembunyikan baris
-                    row.style.display = 'none';
-                }
-            });
+            // Memeriksa apakah judul dokumen atau salah satu tag mengandung kata kunci pencarian
+            var matchFound = title.includes(query) || tagArray.some(tag => tag.includes(query));
 
-            // Log ke konsol setelah pencarian selesai
-            console.log('Pencarian selesai. Hasil yang ditampilkan:', query);
-        }
-
-        // Fungsi untuk melakukan filter berdasarkan kategori
-        function filterByCategory() {
-            // Mendapatkan nilai pilihan kategori
-            var category = document.getElementById('filter').value;
-
-            // Mendapatkan semua baris dalam tabel
-            var rows = document.querySelectorAll('#documentTableBody tr');
-
-            // Iterasi melalui setiap baris dalam tabel
-            rows.forEach(function(row) {
-                // Mendapatkan nilai kategori dari atribut data-category
-                var rowCategory = row.getAttribute('data-category');
-
-                // Memeriksa apakah kategori dokumen sama dengan pilihan filter atau 'All'
-                if (category === 'all' || rowCategory === category) {
-                    // Jika iya, tampilkan baris
-                    row.style.display = '';
-                } else {
-                    // Jika tidak, sembunyikan baris
-                    row.style.display = 'none';
-                }
-            });
-
-            // Log ke konsol setelah filter selesai
-            console.log('Filter selesai. Kategori yang ditampilkan:', category);
-        }
-
-        // Event listener untuk menangani pencarian saat tombol atau input diketik
-        document.getElementById('search').addEventListener('input', function() {
-            searchByTitle();
+            if (matchFound) {
+                // Jika iya, tampilkan baris
+                row.style.display = '';
+            } else {
+                // Jika tidak, sembunyikan baris
+                row.style.display = 'none';
+            }
         });
 
-        // Event listener untuk menangani pencarian saat tombol search di klik
-        document.getElementById('searchIcon').addEventListener('click', function() {
-            searchByTitle();
-        });
+        // Log ke konsol setelah pencarian selesai
+        console.log('Pencarian selesai. Hasil yang ditampilkan:', query);
+    }
 
-        // Event listener untuk menangani perubahan filter kategori
-        document.getElementById('filter').addEventListener('change', function() {
-            filterByCategory();
-        });
+    // Event listener untuk menangani pencarian saat tombol atau input diketik
+    document.getElementById('search').addEventListener('input', function() {
+        searchByTitleAndTag();
     });
+
+    // Event listener untuk menangani pencarian saat tombol search di klik
+    document.getElementById('searchIcon').addEventListener('click', function() {
+        searchByTitleAndTag();
+    });
+     // Fungsi untuk melakukan filter berdasarkan kategori dokumen
+     function filterByCategory() {
+        var selectedCategory = document.getElementById('filter').value.toLowerCase();
+        var rows = document.querySelectorAll('#documentTableBody tr');
+
+        rows.forEach(function(row) {
+            var category = row.dataset.category.toLowerCase();
+
+            if (selectedCategory === 'all' || category === selectedCategory) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+
+        console.log('Filtering by category:', selectedCategory);
+    }
+
+    // Event listener untuk pencarian
+    document.getElementById('search').addEventListener('input', function() {
+        searchByTitleAndTag();
+    });
+
+    document.getElementById('searchIcon').addEventListener('click', function() {
+        searchByTitleAndTag();
+    });
+
+    // Event listener untuk filter
+    document.getElementById('filter').addEventListener('change', function() {
+        filterByCategory();
+    });
+});
+
 </script>
 @endsection

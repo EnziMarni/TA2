@@ -87,8 +87,8 @@ class DokumenController extends Controller
             if ($document->dokumen_file) {
                 Storage::disk('public')->delete('documents/' . $document->dokumen_file);
             }
-            // Unggah file baru
-            $fileName = time() . '.' . $request->edit_dokumen_file->getClientOriginalExtension();
+            // Unggah file baru dengan nama asli
+            $fileName = $request->edit_dokumen_file->getClientOriginalName();
             $request->edit_dokumen_file->storeAs('public/documents', $fileName);
             // Update nama file dokumen
             $document->dokumen_file = $fileName;

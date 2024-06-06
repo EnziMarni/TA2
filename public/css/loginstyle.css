@@ -21,3 +21,20 @@
     margin-top: 10px;
     margin-left: 20px;
 }
+/* Custom CSS untuk memperbaiki tampilan card */
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+}
+
+.card-title,
+.card-text {
+    display: flex;
+    align-items: center;
+}
+
+.card-title i,
+.card-text i {
+    margin-right: 10px;
+    color: #6c757d;
+}
