@@ -61,6 +61,7 @@
                             <option value="Ketua Jurusan" {{ $document->validasi_dokumen == 'Ketua Jurusan' ? 'selected' : '' }}>Ketua Jurusan</option>
                             <option value="Ketua Program Studi" {{ $document->validasi_dokumen == 'Ketua Program Studi' ? 'selected' : '' }}>Ketua Program Studi</option>
                             <option value="Kelompok Bidang Keahlian" {{ $document->validasi_dokumen == 'Kelompok Bidang Keahlian' ? 'selected' : '' }}>Kelompok Bidang Keahlian</option>
+                            <option value="Lainnya" {{ $document->validasi_dokumen == 'Lainnya' ? 'selected' : '' }}>Lainnya</option>
                         </select>
                     </div>
                     <div>

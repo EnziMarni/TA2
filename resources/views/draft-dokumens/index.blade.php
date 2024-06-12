@@ -42,13 +42,22 @@
                             <td>{{$dokumen->kategori_dokumen}}</td>
                             <td>
                                 <!-- Icon untuk delete -->
-                                <form action="{{ route('draft.delete', $dokumen->id) }}" method="POST" style="display: inline;">
-                                    @csrf
-                                    @method('DELETE') 
-                                    <button type="submit" style="border: none; background-color: transparent;" onclick="return confirm('Apakah Anda yakin ingin menghapus dokumen ini dari draft?')">
-                                        <i class="fa fa-trash" aria-hidden="true" style="color: red;"></i>
-                                    </button>
-                                </form>
+                                <div style="display: flex; align-items: center;">
+                                    <form action="{{ route('draft.delete', $dokumen->id) }}" method="POST" style="margin-right: 5px;">
+                                        @csrf
+                                        @method('DELETE') 
+                                        <button type="submit" style="border: none; background-color: transparent;" onclick="return confirm('Apakah Anda yakin ingin menghapus dokumen ini dari draft?')">
+                                            <i class="fa fa-trash" aria-hidden="true" style="color: red;"></i>
+                                        </button>
+                                    </form>
+                                    <form action="{{ route('draft-dokumen.unarchive', $dokumen->id) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" style="border: none; background-color: transparent;">
+                                            <i class="fa fa-arrow-left" aria-hidden="true" style="color: blue;"></i>
+                                        </button>
+                                    </form>
+                                </div>
+
                             </td>
                         </tr>
                     @endforeach

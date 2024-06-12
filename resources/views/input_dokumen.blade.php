@@ -63,6 +63,7 @@
                             <option value="Ketua Jurusan">Ketua Jurusan</option>
                             <option value="Ketua Program Studi">Ketua Program Studi</option>
                             <option value="Kelompok Bidang Keahlian">Kelompok Bidang Keahlian</option>
+                            <option value="Lainnya">Lainnya</option>
                         </select>
                 </div>
 

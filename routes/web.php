@@ -37,8 +37,18 @@ Route::delete('/draft/{id}', [DraftDocumentController::class, 'delete'])->name('
 Route::get('/dokumens', [DraftDocumentController::class, 'index'])->name('dokumens.index');
 Route::delete('/dokumens/{id}/draft', [DraftDocumentController::class, 'moveToDraft'])->name('dokumens.moveToDraft');
 Route::get('/draft-dokumen', [DraftDocumentController::class, 'index'])->name('draft-dokumen');
-
 Route::get('/about-me', [UserController::class, 'aboutMe'])->name('about-me');
+
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect('/login');
+})->name('logout');
+// Rute untuk menghapus dokumen dari draft
+Route::delete('draft-dokumen/{id}', [DraftDocumentController::class, 'delete'])->name('draft.delete');
+
+// Rute untuk memindahkan dokumen dari draft ke list dokumen
+Route::post('draft-dokumen/unarchive/{id}', [DraftDocumentController::class, 'unarchive'])->name('draft-dokumen.unarchive');
+
 
 
 
