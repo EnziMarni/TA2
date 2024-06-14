@@ -11,7 +11,7 @@
         </div>
         <div class="tab-content" id="v-pills-tabContent">
             <div class="tab-pane fade show active" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                <h3 class="judul">EDIT DOKUMEN</h3>
+                <h3 class="judul">UPDATE DOKUMEN</h3>
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>

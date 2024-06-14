@@ -22,7 +22,7 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="position: fixed;top: 0;width: 100%;z-index: 1000;">
-            <div class="container" style="max-width: 98%;";">
+            <div class="container" style="max-width: 98%;">
             <a class="navbar-brand"  href="{{ url('/home') }}">
             SMDE
         </a>

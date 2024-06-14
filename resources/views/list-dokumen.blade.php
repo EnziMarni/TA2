@@ -86,6 +86,12 @@
                             <a href="{{ asset('storage/documents/' . $document->dokumen_file) }}" class="btn btn-link" download>
                                 <i class="fa fa-download"></i>
                             </a>
+                            
+                            <!-- history -->
+                            <a href="{{ route('dokumen.history', $document->id) }}" class="btn btn-link">
+                                <i class="fa fa-history" aria-hidden="true" style="color: blue;"></i>
+                            </a>
+
                             <!-- Icon untuk delete -->
                             <form action="{{ route('dokumen.moveToDraft', $document->id) }}" method="POST" style="display: inline;">
                                     @csrf
@@ -102,7 +108,6 @@
         </div>
     </div>
 </div>
-
 <script>
    document.addEventListener('DOMContentLoaded', function () {
     const originalRowsOrder = Array.from(document.querySelectorAll('#documentTableBody tr'));
@@ -219,6 +224,24 @@
         // Log ke konsol setelah filter selesai
         console.log('Filter tahun:', type);
     }
+    $(document).ready(function() {
+        $('.show-history').click(function(e) {
+            e.preventDefault();
+            var documentId = $(this).data('document-id');
+            $.ajax({
+                url: '/get-document-history/' + documentId,
+                type: 'GET',
+                success: function(response) {
+                    // Tampilkan riwayat dalam modal
+                    $('#history-modal .modal-body').html(response);
+                    $('#history-modal').modal('show');
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        });
+    });
 });
 
 </script>

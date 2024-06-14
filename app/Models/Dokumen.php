@@ -16,5 +16,9 @@ class Dokumen extends Model
             'tags',
          
         ];
-
+        public function histories()
+        {
+            return $this->hasMany(History::class);
+        }   
 }
+

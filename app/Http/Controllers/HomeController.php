@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Dokumen;
 use Illuminate\Http\Request;
+
 
 class HomeController extends Controller
 {
@@ -23,6 +24,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+         // Hitung jumlah dokumen yang sudah diinputkan
+         $documentCount = Dokumen::count();
+
+         return view('home', compact('documentCount'));
     }
 }

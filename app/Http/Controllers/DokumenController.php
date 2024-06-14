@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Dokumen;
 use App\Models\Draft;
+use App\Models\History;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -71,6 +72,17 @@ class DokumenController extends Controller
     public function update(Request $request, $id)
     {
         $document = Dokumen::findOrFail($id);
+
+        History::create([
+            'dokumen_id' => $document->id,
+            'judul_dokumen' => $document->judul_dokumen,
+            'deskripsi_dokumen' => $document->deskripsi_dokumen,
+            'kategori_dokumen' => $document->kategori_dokumen,
+            'validasi_dokumen' => $document->validasi_dokumen,
+            'tahun_dokumen' => $document->tahun_dokumen,
+            'dokumen_file' => $document->dokumen_file,
+            'tags' => $document->tags,
+        ]);
         
         $validatedData = $request->validate([
             'judul_dokumen' => 'required|string|max:255',
@@ -132,5 +144,14 @@ class DokumenController extends Controller
     
         return redirect()->route('list-dokumen')->with('success', 'Dokumen berhasil dihapus');
     }
+
+    public function history($id)
+    {
+        $dokumen = Dokumen::findOrFail($id);
+        $histories = $dokumen->histories()->orderBy('created_at', 'desc')->get();
+
+        return view('history', compact('dokumen', 'histories'));
+    }
+
 
 };

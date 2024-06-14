@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DokumenController;
 use App\Http\Controllers\DraftDocumentController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -23,6 +24,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+
 Route::get('/input-dokumen', [DokumenController::class, 'input'])->name('input-dokumen');
 Route::get('/list-dokumen', [DokumenController::class, 'listDokumen'])->name('list-dokumen');
 Route::post('simpan-dokumen', [DokumenController::class, 'store'])->name('simpan-dokumen');
@@ -48,6 +52,10 @@ Route::delete('draft-dokumen/{id}', [DraftDocumentController::class, 'delete'])-
 
 // Rute untuk memindahkan dokumen dari draft ke list dokumen
 Route::post('draft-dokumen/unarchive/{id}', [DraftDocumentController::class, 'unarchive'])->name('draft-dokumen.unarchive');
+
+// routes/web.php
+Route::get('dokumen/{id}/history', [DokumenController::class, 'history'])->name('dokumen.history');
+
 
 
 
