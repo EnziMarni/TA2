@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 03, 2024 at 03:05 PM
+-- Generation Time: Jun 15, 2024 at 11:48 AM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.3
 
@@ -46,8 +46,16 @@ CREATE TABLE `dokumens` (
 --
 
 INSERT INTO `dokumens` (`id`, `judul_dokumen`, `deskripsi_dokumen`, `kategori_dokumen`, `validasi_dokumen`, `tahun_dokumen`, `dokumen_file`, `tags`, `status`, `created_at`, `updated_at`) VALUES
-(63, 'Dokumen Pemberitahuan', 'Dokumen berisi pemberitahuan', 'Dokumen Tata Pamong', 'Ketua Jurusan', 2023, 'Dokumen Internal.pdf', 'tag', 'active', '2024-06-03 07:55:35', '2024-06-03 07:55:35'),
-(64, 'Dokumen Laporan', 'Dokumen berisi laporan kegiatan', 'Dokumen Tata Kelola', 'Ketua Jurusan', 2022, 'Use Case Diagram.pdf', 'dokumen', 'active', '2024-06-03 07:57:35', '2024-06-03 07:57:35');
+(71, 'Dokumen ketiga', 'Deskripsi dokumen ketiga', 'Dokumen Tujuan', 'Ketua Program Studi', 2024, 'UML.pdf', 'tags,edit', 'active', '2024-06-11 23:47:52', '2024-06-12 01:22:58'),
+(73, 'Iuran kedua', 'deskripsi iuran', 'Dokumen Iuran', 'Ketua Program Studi', 2024, 'Dokumen Internal.pdf', 'iuran', 'active', '2024-06-11 23:48:28', '2024-06-12 01:20:08'),
+(74, 'Kegiatan Penelitian update', 'deskripsi update', 'Dokumen Penelitian', 'Direktur', 2024, 'UML.pdf', 'penelitian', 'active', '2024-06-12 01:01:03', '2024-06-12 01:11:19'),
+(76, 'Dokumen Kelengkapan Jurusan', 'Ini adalah deskripsi dokumen', 'Dokumen Sarana Prasarana', 'Direktur', 2024, 'jawaban.pdf', 'sarana, dokumen', 'active', '2024-06-12 01:30:48', '2024-06-12 01:32:18'),
+(77, 'Kurikulum TRPL', 'Deskripsi kurikulum', 'Dokumen Pendidikan', 'Ketua Program Studi', 2022, 'Dokumen Internal.pdf', 'kurikulum, dokumen', 'active', '2024-06-12 01:43:44', '2024-06-12 01:43:44'),
+(78, 'Proposal Edit', 'deskripsi', 'Dokumen Pengabdian Kepada Masyarakat', 'Ketua Program Studi', 2024, 'Dokumen Internal.pdf', 'penelitian,pengabdian', 'active', '2024-06-12 02:07:21', '2024-06-12 02:07:33'),
+(79, 'Dokumen testing', 'Ini adalah deskripsi dokumen testing', 'Dokumen Tujuan', 'Ketua Jurusan', 2023, 'Kartu Pendaftaran DTS.pdf', 'testing, satu, dua', 'active', '2024-06-13 02:00:31', '2024-06-13 02:00:31'),
+(80, 'Kurikulum MI', 'Deskripsi kurikulum', 'Dokumen Pendidikan', 'Ketua Program Studi', 2024, 'Dokumen Internal.pdf', 'kurikulum, dokumen, mi', 'active', '2024-06-13 02:17:27', '2024-06-13 02:17:27'),
+(81, 'Judul dokumen', 'Ini adalah deskripsi dokume', 'Dokumen Strategi', 'Ketua Jurusan', 2024, '1717333249.pdf', 'tag1', 'active', '2024-06-13 03:07:19', '2024-06-13 03:07:19'),
+(84, 'Dokumen Laporan', 'Sertifikat organisasi', 'Dokumen Visi Misi', 'Ketua Jurusan', 2023, '1717425614.pdf', 'tag', 'active', '2024-06-13 05:08:41', '2024-06-13 05:08:41');
 
 -- --------------------------------------------------------
 
@@ -74,8 +82,7 @@ CREATE TABLE `draft` (
 --
 
 INSERT INTO `draft` (`id`, `judul_dokumen`, `deskripsi_dokumen`, `kategori_dokumen`, `validasi_dokumen`, `tahun_dokumen`, `dokumen_file`, `tags`, `status`, `updated_at`, `created_at`) VALUES
-(19, 'Dokumen Laporan', 'Sertifikat organisasi', 'Dokumen Visi Misi', 'Ketua Jurusan', 2023, '1717425614.pdf', 'tag', 'draft', '2024-06-03 07:56:45', '2024-06-03 07:56:45'),
-(20, 'Judul dokumen', 'Ini adalah deskripsi dokume', 'Dokumen Strategi', 'Ketua Jurusan', 2024, '1717333249.pdf', 'tag1', 'draft', '2024-06-03 07:59:24', '2024-06-03 07:59:24');
+(25, 'Visi Misi TRPL', 'Deskripsi Visi Misi', 'Dokumen Visi Misi', 'Ketua Program Studi', 2023, 'Dokumen Internal.pdf', 'Visi misi', 'draft', '2024-06-13 05:08:25', '2024-06-13 05:08:25');
 
 -- --------------------------------------------------------
 
@@ -121,6 +128,41 @@ CREATE TABLE `failed_jobs` (
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `histories`
+--
+
+CREATE TABLE `histories` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `dokumen_id` int(11) NOT NULL,
+  `judul_dokumen` varchar(255) NOT NULL,
+  `deskripsi_dokumen` text NOT NULL,
+  `kategori_dokumen` varchar(255) NOT NULL,
+  `validasi_dokumen` varchar(255) NOT NULL,
+  `tahun_dokumen` int(11) NOT NULL,
+  `dokumen_file` varchar(255) NOT NULL,
+  `tags` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `histories`
+--
+
+INSERT INTO `histories` (`id`, `dokumen_id`, `judul_dokumen`, `deskripsi_dokumen`, `kategori_dokumen`, `validasi_dokumen`, `tahun_dokumen`, `dokumen_file`, `tags`, `created_at`, `updated_at`) VALUES
+(2, 74, 'Penelitian dosen', 'penelitian', 'Dokumen Penelitian', 'Direktur', 2024, 'Dokumen Internal.pdf', 'penelitian', '2024-06-12 01:10:41', '2024-06-12 01:10:41'),
+(3, 74, 'Kegiatan Penelitian', 'deskripsi', 'Dokumen Penelitian', 'Direktur', 2024, 'Dokumen Internal.pdf', 'penelitian', '2024-06-12 01:11:19', '2024-06-12 01:11:19'),
+(4, 73, 'Iuran', 'deskripsi', 'Dokumen Iuran', 'Ketua Program Studi', 2024, 'Dokumen Internal.pdf', 'iuran', '2024-06-12 01:20:08', '2024-06-12 01:20:08'),
+(5, 71, 'Dokumen Laporan', 'Deskripsi berisi laporan kegiatan', 'Dokumen Visi Misi', 'Kelompok Bidang Keahlian', 2023, 'Use Case Diagram.pdf', 'tags,edit', '2024-06-12 01:21:24', '2024-06-12 01:21:24'),
+(6, 71, 'Dokumen', 'Deskripsi dokumen', 'Dokumen Tujuan', 'Ketua Program Studi', 2024, 'Dokumen Internal.pdf', 'tags,edit', '2024-06-12 01:22:57', '2024-06-12 01:22:57'),
+(7, 76, 'Dokumen Kelengkapan Kelas', 'Ini adalah deskripsi dokumen', 'Dokumen Sarana Prasarana', 'Direktur', 2024, 'jawaban.pdf', 'sarana, dokumen', '2024-06-12 01:31:07', '2024-06-12 01:31:07'),
+(8, 76, 'Dokumen Kelengkapan Jurusan', 'Ini adalah deskripsi dokumen', 'Dokumen Sarana Prasarana', 'Direktur', 2024, 'jawaban.pdf', 'sarana, dokumen', '2024-06-12 01:31:32', '2024-06-12 01:31:32'),
+(9, 76, 'Dokumen Kelengkapan Jurusan', 'Ini adalah deskripsi dokumen', 'Dokumen Sarana Prasarana', 'Direktur', 2024, 'Dokumen Internal.pdf', 'sarana, dokumen', '2024-06-12 01:32:18', '2024-06-12 01:32:18'),
+(10, 78, 'Proposal', 'deskripsi', 'Dokumen Pengabdian Kepada Masyarakat', 'Ketua Program Studi', 2024, 'Dokumen Internal.pdf', 'penelitian,pengabdian', '2024-06-12 02:07:33', '2024-06-12 02:07:33');
 
 -- --------------------------------------------------------
 
@@ -230,7 +272,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'super user', 'superuser@example.com', NULL, '$2y$12$3U52mGDwQa42EB7wGtvEoev4OG3WqRFwtggZ1ynhrcg8OVNQfoNQO', 'FV3eBb7LZYYVFpXTPv2GKoOq3wscZ6daRh3ZHOMg0rwZ1SEKcL74L22NVwJO', '2024-05-09 00:52:21', '2024-05-09 00:52:21');
+(1, 'super user', 'superuser@example.com', NULL, '$2y$12$3U52mGDwQa42EB7wGtvEoev4OG3WqRFwtggZ1ynhrcg8OVNQfoNQO', '9JFG9uGUCssc9cKVfsh614tELoPcXPwaXNukSrcDhiPdkzrriaqwnYkKN0fv', '2024-05-09 00:52:21', '2024-05-09 00:52:21');
 
 --
 -- Indexes for dumped tables
@@ -260,6 +302,13 @@ ALTER TABLE `draft_documents`
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indexes for table `histories`
+--
+ALTER TABLE `histories`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `dokumen_id` (`dokumen_id`);
 
 --
 -- Indexes for table `migrations`
@@ -308,13 +357,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `dokumens`
 --
 ALTER TABLE `dokumens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT for table `draft`
 --
 ALTER TABLE `draft`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `draft_documents`
@@ -327,6 +376,12 @@ ALTER TABLE `draft_documents`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `histories`
+--
+ALTER TABLE `histories`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -351,6 +406,16 @@ ALTER TABLE `roles`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `histories`
+--
+ALTER TABLE `histories`
+  ADD CONSTRAINT `histories_ibfk_1` FOREIGN KEY (`dokumen_id`) REFERENCES `dokumens` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
